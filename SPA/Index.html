@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spatial Analysis</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Turf.js/7.0.0/turf.min.js"></script>
+</head>
+<body>
+  <div id="map" style="height: 400px;"></div>
+  <form>
+    <label for="buffer-distance">Buffer Distance (km):</label>
+    <input type="number" id="buffer-distance" name="buffer-distance" value="1">
+    <button type="submit">Create Buffer</button>
+  </form>
+  <script>
+    const map = L.map('map').setView([1.1018, 37.0144], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(map);
+
+    let bufferLayer;
+
+    function createBuffer() {
+      const distance = document.getElementById('buffer-distance').value;
+      const point = turf.point([-0.1, 51.5]);
+      const buffered = turf.buffer(point, distance, {units: 'kilometers'});
+      if (bufferLayer) {
+        map.removeLayer(bufferLayer);
+      }
+      bufferLayer = L.geoJSON(buffered).addTo(map);
+      map.fitBounds(bufferLayer.getBounds());
+    }
+
+    document.querySelector('form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      createBuffer();
+    });
+  </script>
+</body>
+</html>

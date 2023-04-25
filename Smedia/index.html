@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Social Media Map</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div id="map" style="height: 400px;"></div>
+  <script>
+    const map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+    }).addTo(map);
+
+    const twitterConfig = {
+      baseUrl: 'https://api.twitter.com/2',
+      bearerToken: 'YOUR_BEARER_TOKEN_HERE',
+    };
+
+    function searchTweets(query) {
+      const params = {
+        query,
+        max_results: 100,
+        tweet_fields: 'created_at,geo,public_metrics',
+      };
+      const url = `${twitterConfig.baseUrl}/tweets/search/recent`;
+      return axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${twitterConfig.bearerToken}`,
+        },
+        params,
+      });
+    }
+
+    function createMarker(tweet) {
+      const lat = tweet.geo.coordinates[0];
+      const lng = tweet.geo.coordinates[1];
+      const marker = L.marker([lng, lat]);
+      const content = `<h3>${tweet.created_at}</h3><p>${marked(tweet.text)}</p><p>Likes: ${tweet.public_metrics.like_count} | Retweets: ${tweet.public_metrics.retweet_count}</p>`;
+      marker.bindPopup(content);
+      return marker;
+    }
+
+    function addTweetsToMap(query) {
+      searchTweets(query)
+        .then((response) => {
+          const tweets = response.data.data;
+          const markers = tweets.map(createMarker);
+          const layer = L.layerGroup(markers);
+          map.addLayer(layer);
+          map.fitBounds(layer.getBounds());
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+
+    addTweetsToMap('#OpenStreetMap');
+  </script>
+</body>
+</html>

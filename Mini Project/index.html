@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cancer Map Application</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" />
+  <style>
+    #map {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+    }
+  </style>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    mapboxgl.accessToken = 'YOUR_ACCESS_TOKEN_HERE';
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [37.9062, -0.0236],
+      zoom: 6,
+    });
+
+    axios.get('/cancer-data')
+      .then((response) => {
+        const cancerData = response.data;
+
+        const cancerLayer = {
+          id: 'cancer-layer',
+          type: 'circle',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'FeatureCollection',
+              features: cancerData.map((datum) => ({
+                type: 'Feature',
+                geometry: {
+                  type: 'Point',
+                  coordinates: [datum.longitude, datum.latitude],
+                },
+                properties: {
+                  cancer_type: datum.cancer_type,
+                },
+              })),
+            },
+          },
+          paint: {
+            'circle-color': [
+              'match',
+              ['get', 'cancer_type'],
+              'Breast',
+              '#fbb03b',
+              'Cervical',
+              '#223b53',
+              'Colorectal',
+              '#e55e5e',
+              'Lung',
+              '#3bb2d0',
+              '#ccc',
+            ],
+            'circle-radius': 8,
+            'circle-opacity': 0.8,
+          },
+        };
+
+        map.addLayer(cancerLayer);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  </script>
+</body>
+</html>

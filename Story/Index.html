@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Story Map</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+  <style>
+    #map {
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Story Map</h1>
+  <div id="map"></div>
+  <script>
+    // define your data as an array of objects
+    const storyData = [
+      {
+        name: "Event 1",
+        lat: 40.7128,
+        lng: -74.0060,
+        description: "The first event",
+        image: "https://via.placeholder.com/150",
+        zoom: 12
+      },
+      {
+        name: "Event 2",
+        lat: 37.7749,
+        lng: -122.4194,
+        description: "The second event",
+        image: "https://via.placeholder.com/150",
+        zoom: 10
+      },
+      {
+        name: "Event 3",
+        lat: 51.5074,
+        lng: -0.1278,
+        description: "The third event",
+        image: "https://via.placeholder.com/150",
+        zoom: 12
+      }
+    ];
+
+    // initialize the map
+    const map = L.map('map').setView([40.7128, -74.0060], 12);
+
+    // add a tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+      id: 'mapbox.streets'
+    }).addTo(map);
+
+    // define a function to add a marker to the map
+    function addMarker(data) {
+      const marker = L.marker([data.lat, data.lng]).addTo(map);
+      marker.bindPopup(`<h2>${data.name}</h2><p>${data.description}</p><img src="${data.image}"/>`);
+      map.setView([data.lat, data.lng], data.zoom);
+    }
+
+    // loop through the data and add event listeners to buttons
+    for (let i = 0; i < storyData.length; i++) {
+      const data = storyData[i];
+      $(`#event-${i+1}`).on('click', function() {
+        addMarker(data);
+      });
+    }
+  </script>
+  <button id="event-1">Event 1</button>
+  <button id="event-2">Event 2</button>
+  <button id="event-3">Event 3</button>
+</body>
+</html>

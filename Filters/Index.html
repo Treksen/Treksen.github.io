@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Map Application with Filters and Search</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- include Leaflet CSS and JavaScript files -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-kxiIJnX9z4u3vHP8Wg/lwNVQyHbI2NzQ5LWsgDXZzLdZ9N1yYvgs8WCT5w5/ijK5" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-qfBFr28q3TZWVfzGQ2PdV7Pvj/mKS+HYO7OwTazp77qb7r+q3aTQM+Bx2QSLdJ7V" crossorigin=""></script>
+  <!-- include jQuery JavaScript file -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <!-- create a map container with a search box and filter checkboxes -->
+  <div id="map"></div>
+  <div id="controls">
+    <input type="text" id="search" placeholder="Search...">
+    <div>
+      <input type="checkbox" id="checkbox1" class="checkbox" value="Option 1" checked>
+      <label for="checkbox1">Option 1</label>
+    </div>
+    <div>
+      <input type="checkbox" id="checkbox2" class="checkbox" value="Option 2" checked>
+      <label for="checkbox2">Option 2</label>
+    </div>
+    <div>
+      <input type="checkbox" id="checkbox3" class="checkbox" value="Option 3" checked>
+      <label for="checkbox3">Option 3</label>
+    </div>
+  </div>
+  <!-- include a JavaScript file with the map code -->
+  <script src="map.js"></script>
+</body>
+</html>
