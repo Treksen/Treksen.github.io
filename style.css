@@ -6,19 +6,26 @@ body {
   line-height: 1.6;
   background-color: #f4f4f4;
   color: #333;
+  margin-top: 20px;
 }
 
 /* Header and Navigation Bar */
 header {
-  background: #333;
+  background: #2c64ca;
   color: #fff;
-  padding: 1em 0;;
+  padding: 30px 30px;
   text-align: center;
+  z-index: 100;
+  position: fixed;
+  top: 0; 
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(39, 12, 194, 0.993); 
 }
 
 nav ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 nav ul li {
@@ -39,17 +46,17 @@ nav ul li a:hover {
 .section {
   padding: 20px;
   text-align: center;
-  margin: 20px auto;
+  margin:50px auto;
   max-width: 800px;
   background: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: 18px;
 }
 
 /* Profile Picture */
 .profile-pic {
-  width: 200px;
-  height: 200px;
+  width: 190px;
+  height: 150px;
   border-radius: 50%;
   margin-top: 10px;
 }
