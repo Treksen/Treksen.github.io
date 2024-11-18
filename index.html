@@ -1,150 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collins Towett</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <!-- Navbar Section -->
-    <nav class="navbar">
-      <div class="navbar__container">
-        <a href="#home" id="navbar__logo">Towett</a>
-        <div class="navbar__toggle" id="mobile-menu">
-          <span class="bar"></span> <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-        <ul class="navbar__menu">
-          <li class="navbar__item">
-            <a href="#home" class="navbar__links" id="home-page">Home</a>
-          </li>
-          <li class="navbar__item">
-            <a href="#about" class="navbar__links" id="services-page"
-              >About</a>
-          </li>
-          <li class="navbar__item">
-            <a href="#services" class="navbar__links" id="services-page"
-              >Projects</a>
-          <li class="navbar__item">
-            <a href="#contacts" class="navbar__links" id="main-page">Contacts</a>
-          </li>
-        </ul>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  <link rel="stylesheet" href="style.css"> <!-- Links the CSS file -->
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#hobbies">Hobbies</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-  <div class="hero" id="home">
-    <div class="hero__container">
-      <h1 class="hero__heading">MY PROJECT IDEAS<span> </span></h1>
-      <p class="hero__description">Some of My Project Ideas</p>
-      </div>
-    </div>
+  <!-- Home Section -->
+  <section id="home" class="section">
+    <h1>Welcome to My Profile</h1>
+    <p>Hello! I'm Treks, a passionate web developer eager to create amazing web applications.</p>
+  </section>
 
-    <!-- About Section -->
-    <div class="about" id="about">
-      <div class="main__container">
-        <div class="main__content">
-          <h1>Who Am I?</h1>
-          <h4>Hello, my name is Collins Towett and I am a third-year GIS student at JKUAT.
-            I am a driven and passionate individual with a deep interest in
-            Geographic Information Systems and its applications in various fields.
-            As a student, I am constantly seeking new knowledge and skills to enhance my understanding of
-            GIS and its role in decision-making processes.
-            I am known for my strong analytical skills and attention to detail, which enables me to create accurate
-            and precise maps and models. I am also a good team player, and I enjoy collaborating with
-            my peers on projects and assignments.
-            I am a quick learner and not afraid to ask questions when I need clarification or guidance.
-            In my spare time, I enjoy exploring new places and learning about different cultures.
-            I am also an avid reader, and I enjoy reading books on geography, technology, and history.
-            Overall, I am a hardworking, dedicated, and curious individual with a passion for GIS and
-            a desire to make a positive impact in the world.
-            If you have any questions or feedback, please feel free to contact me at colltreks1@gmail.com</h4>
-          <p>Got More? Recommend.</p>
-          <button class="main__btn"> <a href="#services">See about my projects</a></button>
-        </div>
-        <div class="main__img--container">
-          <div class="main__img--card" id="card-2">
-            <i class="fas fa-users"></i>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- About Section -->
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>Hi, I'm Treks, a curious learner with a love for coding, exploring new technologies, and solving real-world problems.</p>
+    <img src="images/Treks.PNG" alt="Profile Picture" class="profile-pic">
+  </section>
 
+  <!-- Hobbies Section -->
+  <section id="hobbies" class="section">
+    <h2>Hobbies</h2>
+    <ul class="hobby-list">
+      <li>Coding</li>
+      <li>Reading</li>
+      <li>Photography</li>
+    </ul>
+  </section>
 
-    <!-- Projects Section -->
-    <div class="services" id="services">
-      <h1>My Projects</h1>
-      <div class="services__wrapper">
-        <div class="services__card">
-          <h2>Urban Planning</h2>
-          <p>Analyze urban land use patterns</p>
-          <div class="services__btn"><button>Read more</button></div>
-        </div>
-        <div class="services__card">
-          <h2>Disaster Management</h2>
-          <p>Analyze natural disasters and emergency response planning</p>
-          <div class="services__btn"><button>Read more</button></div>
-        </div>
-        <div class="services__card">
-          <h2>Environmental Studies</h2>
-          <p>Analyze changes in ecosystems over time</p>
-          <div class="services__btn"><button>Read more</button></div>
-        </div>
-        <div class="services__card">
-          <h2>Marketing</h2>
-          <p>Identify target markets</p>
-          <div class="services__btn"><button>Read more</button></div>
-        </div>
-      </div>
-    </div>
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
 
-    <!-- Footer Section -->
-    <div class="main" id="contacts">
-    <div class="footer__container">
-     <div class="footer__container">
-      <div class="footer__links">
-        <div class="footer__link--wrapper">
-          <div class="footer__link--items">
-            <h2>About Me</h2>
-            <a href="#about">Name</a> <a href="#about">Class</a>
-            <a href="#about">Course</a> <a href="#about">Age</a>
-          </div>
-          <div class="footer__link--items">
-            <h2>Contact Me</h2>
-            <h4>Contacts:</h4>
-            <strong>Phone:</strong> +254723790846
-            <strong>Email:</strong> colltreks3@gmail.com
-          </div>
-        </div>
-        <div class="footer__link--wrapper">
-          <div class="footer__link--items">
-            <h2>Useful Links</h2>
-            <a href="#home">Home</a> <a href="#about">About Me</a><a href="#services">About My Projects</a>
-             <a href="#more">More</a><a href="#footer">Terms Of Services</a> <a href="footer">Privacy policy</a>
-          </div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
 
-        </div>
-      </div>
-      <section class="social__media">
-        <div class="social__media--wrap">
-          <div class="footer__logo">
-            <a href=" " id="footer__logo">TREKS</a>
-          </div>
-          <p class="website__rights">© TREKS 2020. All rights reserved</p>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
 
-        </div>
-      </section>
-    </div>
-    </div>
-    </div>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
-    <script src="app.js"></script>
-  </body>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 My Profile. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script> <!-- Links the JavaScript file -->
+</body>
 </html>
